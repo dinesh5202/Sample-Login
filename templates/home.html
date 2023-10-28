@@ -1,0 +1,33 @@
+<html>
+    <head><title>Login Page</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div style="margin-right:1258px">
+            {% with messages=get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category,message in messages %}<div class="alert alert-{{category}}">{{message}}</div>{% endfor %}
+            {% endif %}
+        {% endwith %}
+        </div>
+        <h2 style="text-align:center;margin-top:50px;">Home Page</h2>
+        <p style="text-align: center;">Hello {{g.user}}</p><br>
+        <form action="/Logout" style="text-align: center;">
+            <button>Logout</button>
+        </form>
+        <div class="col-md-3">
+            <h3>Upload Image</h3>
+            <form action="/image" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Select Image</label>
+                    <input type="file" name="img" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Upload" class="btn-block btn-primary">
+                </div>
+            </form>
+            <img alt="No Image" class="img-thumbnail" src="{{image}}">
+        </div>
+    </body>
+</html>
